@@ -6,7 +6,7 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import styles from "./Scheduler.module.css";
 
-interface CalendarEvent {
+export interface CalendarEvent {
   id: string;
   title: string;
   start: string;
@@ -349,10 +349,7 @@ export const ExtraEvents = [
 export default function Scheduler({ events: propEvents }: SchedulerProps) {
   const events = propEvents || TimeTableEvents;
 
-  console.log("[Scheduler] Rendering with events count:", events.length);
-  console.log("[Scheduler] Events:", events);
-
-  //TODO: Make it so AI can change and add events.
+  //TODO: Make it so AI can add SPECIFIC events.
 
   return (
     <div className={styles.schedulerContainer}>
@@ -360,8 +357,8 @@ export default function Scheduler({ events: propEvents }: SchedulerProps) {
         plugins={[timeGridPlugin, interactionPlugin]}
         initialView="timeGridWeek"
         events={events}
-        slotMinTime="06:00:00"
-        slotMaxTime="23:00:00"
+        slotMinTime="08:00:00"
+        slotMaxTime="19:00:00"
         allDaySlot={false}
         headerToolbar={{
           left: "prev,next today",
@@ -369,7 +366,7 @@ export default function Scheduler({ events: propEvents }: SchedulerProps) {
           right: "timeGridWeek,timeGridDay",
         }}
         height="auto"
-        key={events.length}
+        key="fullcalendar"
       />
     </div>
   );
